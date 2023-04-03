@@ -1,127 +1,85 @@
-/*-------------------------------- Constants ---------------------------*/
+/*-------------------------------- Constants --------------------------------*/
 
 
 
-/*-------------------------------- Variables(state) ----------------------*/
-let  winner, loser, tie
-let deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-
-
-// let deck0 = []
-// let deck1 = []
+/*-------------------------------- Variables --------------------------------*/
+let winner = null
+let loser = null
+let tie =  null
+let deck1 = []
 let deck2 = []
-let deck3 = []
-let deck4 = []
 let cardToRemove
+let playerDeck =[]
+let compDeck = []
 
-/*------------------------ Cached Element References --------------------*/
-let deck1El = document.getElementById('deck-1')
+/*------------------------ Cached Element References ------------------------*/
+let deck1El = document.getElementById('deck-1',playerDeck)
 let deck2El = document.getElementById('deck-2')
 let deck3El = document.getElementById('deck-3')
-let deck4El = document.getElementById('deck-4')
-let playerDeck = deck.slice(0, deck.length / 2)
-let compDeck = deck.slice(deck.length / 2);
-/*----------------------------- Event Listeners -------------------------*/
+let deck4El = document.getElementById('deck-4',compDeck)
+
+/*----------------------------- Event Listeners -----------------------------*/
 document.getElementById('btn').addEventListener('click', handleClick)
-document.getElementById('shuf').addEventListener('click',shuffle)
-
-
-/*-------------------------------- Functions ----------------------------*/
+const shufPlay = document.getElementById('shuf').addEventListener('click',shuffle, deal)
+console.log(deal(deck1))
+/*-------------------------------- Functions --------------------------------*/
+init()
 
 function init() {
-  deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-  shuffle()
-  deal(deck)
-  compDeck()
-  playerDeck()
+  deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  shuffle(deck1)
+  
 }
-
-function shuffle(deck) {
-  for (let i = deck.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [deck[i], deck[j]] = [deck[j], deck[i]];
-  } return deck
-  deal(deck)
-}
-shuffle(deck)
-
-
-
-
-function deal(deck){
-  const playerDeck = deck.slice(0, deck.length / 2);
-
-  const compDeck = deck.slice(deck.length / 2);
-  return[ playerDeck, compDeck]
-
-}
-
-
-
-
-
 
     function handleClick() {
-    if(playerDeck.length >0) {
-      let randIdx = Math.floor(Math.random()*playerDeck.length)
+    if(deck1.length >0) {
+      let randIdx = Math.floor(Math.random()*deck1.length)
 
-      let cardPicked = playerDeck.splice(randIdx, 1)[0]
+      let cardPicked = deck1.splice(randIdx, 1)[0]
 
       deck2.push(cardPicked)
       
       render(cardPicked)
-    }
-    if(compDeck.length >0) {
-      let randIdx = Math.floor(Math.random()*compDeck.length)
-
-      let cardPicked2 = compDeck.splice(randIdx, 1)[0]
-
-      deck3.push(cardPicked2)
       
-      
-      render2(cardPicked2)
     }
+    
+    
   }
-  function render2(cardPicked2){
-    if (deck3.length === 1) {  
-      cardToRemove2 = cardPicked2 
-
-      deck3El.classList.remove("outline")
-      
-    }
-    if (compDeck.length > 1) {  
-      deck2El.classList.remove(cardToRemove2)
-    }
-    deck3El.classList.add(cardPicked2) 
-    if (deck3.length === 13) {  
-      deck3El.classList.add("shadow");
-      deck4El.classList.remove("shadow");
-    }
-    if (compDeck.length === 0) {  
-      deck4El.classList.add("outline");
-      deck4El.classList.remove("back-blue");
-    }
-}
-
-
 
   function render(cardPicked){
     if (deck2.length === 1) {  
-      cardToRemove = cardPicked 
       deck2El.classList.remove("outline")
-      
     }
-    if (playerDeck.length > 1) {  
+    if (deck2.length > 1) {  
       deck2El.classList.remove(cardToRemove)
     }
+    cardToRemove = cardPicked 
     deck2El.classList.add(cardPicked) 
-    if (deck2.length === 13) {  
+    if (deck2.length === 26) {  
       deck2El.classList.add("shadow");
       deck1El.classList.remove("shadow");
     }
-    if (playerDeck.length === 0) {  
+    if (deck1.length === 0) {  
       deck1El.classList.add("outline");
       deck1El.classList.remove("back-blue");
     }
-    
 }
+
+
+function shuffle(deck1) {
+  for (let i = deck1.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [deck1[i], deck1[j]] = [deck1[j], deck1[i]];
+  } return deck1
+  
+} 
+
+function deal(deck1){
+  const playerDeck = deck1.slice(0, deck1.length / 2); 
+
+  const compDeck = deck1.slice(deck1.length / 2);
+  return[ playerDeck, compDeck] 
+
+}
+console.log(deal(deck1))
+// deal deck isnt pushing anyway.
