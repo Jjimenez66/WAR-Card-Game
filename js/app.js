@@ -9,19 +9,19 @@ let tie =  null
 let deck1 = []
 let deck2 = []
 let cardToRemove
-let playerDeck =[]
-let compDeck = []
+let playerDeck 
+let compDeck 
 
 /*------------------------ Cached Element References ------------------------*/
-let deck1El = document.getElementById('deck-1',playerDeck)
+let deck1El = document.getElementById('player-deck', dealPlayer)
 let deck2El = document.getElementById('deck-2')
 let deck3El = document.getElementById('deck-3')
-let deck4El = document.getElementById('deck-4',compDeck)
+let deck4El = document.getElementById('comp-deck')
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.getElementById('btn').addEventListener('click', handleClick)
-const shufPlay = document.getElementById('shuf').addEventListener('click',shuffle, deal)
-console.log(deal(deck1))
+const shufPlay = document.getElementById('shuf').addEventListener('click',shuffle)
+
 /*-------------------------------- Functions --------------------------------*/
 init()
 
@@ -42,7 +42,9 @@ function init() {
       render(cardPicked)
       
     }
-    
+    shuffle(deck1)
+    dealPlayer(deck1)
+    dealComp(deck1)
     
   }
 
@@ -74,12 +76,19 @@ function shuffle(deck1) {
   
 } 
 
-function deal(deck1){
-  const playerDeck = deck1.slice(0, deck1.length / 2); 
+function dealPlayer(deck1){
+  let newDeck = deck1.slice(0, deck1.length / 2); 
+  playerDeck = newDeck
+}
 
-  const compDeck = deck1.slice(deck1.length / 2);
-  return[ playerDeck, compDeck] 
+function dealComp(deck1){
+  let newCompDeck = deck1.slice(deck1.length / 2); 
+  compDeck = newCompDeck
+}
+// i need to design a function that when the Player hand and computer hand is played that the high card 
+//  is the winner and collects  all the cards and puts it back in the winners hand. If it results in a tie I need to commence war with three cards down and the last one face up.
+function playHand(){
+  let playerCardValue = getValue(playerDeck[playerDeck.length - 1])
+  let compCardValue = getValue(compDeck[deck3.length - 1])
 
 }
-console.log(deal(deck1))
-// deal deck isnt pushing anyway.
