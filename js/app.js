@@ -1,9 +1,7 @@
 /*-------------------------------- Constants --------------------------------*/
 
-
-
 /*-------------------------------- Variables --------------------------------*/
-let winner = null
+let winner 
 let loser = null
 let tie =  null
 let deck1 = []
@@ -11,12 +9,19 @@ let deck2 = []
 let cardToRemove
 let playerDeck 
 let compDeck 
+let value
+let rank
+let playerCardValue
+let compCardValue
+let getValue
+
+
 
 /*------------------------ Cached Element References ------------------------*/
-let deck1El = document.getElementById('player-deck', dealPlayer)
+let deck1El = document.getElementById('player-deck',dealPlayer)
 let deck2El = document.getElementById('deck-2')
 let deck3El = document.getElementById('deck-3')
-let deck4El = document.getElementById('comp-deck')
+let deck4El = document.getElementById('comp-deck',dealComp)
 
 /*----------------------------- Event Listeners -----------------------------*/
 document.getElementById('btn').addEventListener('click', handleClick)
@@ -30,11 +35,10 @@ function init() {
   shuffle(deck1)
   
 }
-
-    function handleClick() {
-    if(deck1.length >0) {
+function handleClick() {
+  if(deck1.length >0) {
       let randIdx = Math.floor(Math.random()*deck1.length)
-
+      
       let cardPicked = deck1.splice(randIdx, 1)[0]
 
       deck2.push(cardPicked)
@@ -45,6 +49,7 @@ function init() {
     shuffle(deck1)
     dealPlayer(deck1)
     dealComp(deck1)
+    playHand()
     
   }
 
@@ -87,8 +92,32 @@ function dealComp(deck1){
 }
 // i need to design a function that when the Player hand and computer hand is played that the high card 
 //  is the winner and collects  all the cards and puts it back in the winners hand. If it results in a tie I need to commence war with three cards down and the last one face up.
-function playHand(){
-  let playerCardValue = getValue(playerDeck[playerDeck.length - 1])
-  let compCardValue = getValue(compDeck[deck3.length - 1])
+function getValue(card){
 
+  let rank = card.slice(1)
+  let value
 }
+
+function playHand(){
+  let playerCardValue = getValue(deck2El[deck2El.length - 1])
+  let compCardValue = getValue(deck3El[deck3El.length - 1])
+  if (playerCardValue > compCardValue){
+    winner = 'Player' 
+    playerDeck.push(...playerDeck)
+    playerDeck = []
+  }
+    if(compCardValue > playerCardValue){
+      winner = 'Computer'
+      compDeck.push(...compDeck)
+      compDeck = []
+
+    }else{
+      tie = war()
+    }
+    
+  }
+
+  // function compareCard(){
+
+
+  // }
