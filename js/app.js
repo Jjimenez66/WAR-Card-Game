@@ -41,7 +41,7 @@ function init() {
   shuffle(deck)
 dealPlayer(deck)
 dealComp(deck)
- 
+
 }
 
 function handleClick() {
@@ -51,18 +51,12 @@ if(playerDeck.length > 0) {
   playerZone.push(cardPicked)
   render(cardPicked)
   
-
-  
-  
 }
 if(computerDeck.length > 0) {
   let randIdx = Math.floor(Math.random()*computerDeck.length)
   let computerCard = computerDeck.splice(randIdx, 1)[0]
   computerZone.push(computerCard)
   render2(computerCard)
-  
-  
-  
 }
   
   
@@ -85,12 +79,12 @@ if(computerDeck.length > 0) {
       
     } 
       function render2(computerCard) {if(computerZone.length > 0){
-  computerZoneEl.classList.remove('outline')
-  computerZoneEl.classList.remove(computerCardToRemove)
-  computerZoneEl.classList.add(computerCard)
-  computerCardToRemove = computerCard
-  console.log(computerCard)}
-  if (computerZone.length === 13) {  
+        computerZoneEl.classList.remove('outline')
+        computerZoneEl.classList.remove(computerCardToRemove)
+        computerZoneEl.classList.add(computerCard)
+        computerCardToRemove = computerCard
+  }
+        if (computerZone.length === 13) {  
           computerZoneEl.classList.add("shadow");
           computerCardsEl.classList.remove("shadow");
         }   if (computerDeck.length === 0) {  
@@ -98,8 +92,6 @@ if(computerDeck.length > 0) {
             computerCardsEl.classList.remove("back-blue");
         }  
   }
-    
-
   }
 
   function shuffle(deck) {
@@ -117,6 +109,5 @@ if(computerDeck.length > 0) {
       let newCompDeck = deck.slice(deck.length / 2); 
       computerDeck = newCompDeck
     }
-
 
 
