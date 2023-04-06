@@ -58,32 +58,34 @@ if(computerDeck.length > 0) {
   computerZone.push(computerCard)
   render2(computerCard)
 }
+
+} 
   
-  
-    function render(cardPicked){
-      if (playerZone.length > 0) {  
-        playerZoneEl.classList.remove("outline")
-        playerZoneEl.classList.remove(cardToRemove)
-        playerZoneEl.classList.add(cardPicked)
-        console.log(playerZoneEl.classList.value,'1st')
-        cardToRemove = cardPicked
-      }   if (playerZone.length === 13) {  
-              playerZoneEl.classList.add("shadow");
-              playerCardsEl.classList.remove("shadow");
-              console.log(playerZoneEl.classList,'3rd')
-            }
-            if (playerDeck.length === 0) {  
-              playerCardsEl.classList.add("outline");
-              playerCardsEl.classList.remove("back-blue");
-            }
-      
-    } 
-      function render2(computerCard) {if(computerZone.length > 0){
-        computerZoneEl.classList.remove('outline')
-        computerZoneEl.classList.remove(computerCardToRemove)
-        computerZoneEl.classList.add(computerCard)
-        computerCardToRemove = computerCard
+function render(cardPicked){
+  if (playerZone.length > 0) {  
+    playerZoneEl.classList.remove("outline")
+    playerZoneEl.classList.remove(cardToRemove)
+    playerZoneEl.classList.add(cardPicked)
+    console.log(playerZoneEl.classList.value,'1st')
+    cardToRemove = cardPicked
+  } 
+  if (playerZone.length === 13) {  
+    playerZoneEl.classList.add("shadow");
+    playerCardsEl.classList.remove("shadow");
+    console.log(playerZoneEl.classList,'3rd')
   }
+  if (playerDeck.length === 0) {  
+    playerCardsEl.classList.add("outline");
+    playerCardsEl.classList.remove("back-blue");
+  }
+  
+} 
+function render2(computerCard) {if(computerZone.length > 0){
+  computerZoneEl.classList.remove('outline')
+  computerZoneEl.classList.remove(computerCardToRemove)
+  computerZoneEl.classList.add(computerCard)
+  computerCardToRemove = computerCard
+}
         if (computerZone.length === 13) {  
           computerZoneEl.classList.add("shadow");
           computerCardsEl.classList.remove("shadow");
@@ -92,7 +94,7 @@ if(computerDeck.length > 0) {
             computerCardsEl.classList.remove("back-blue");
         }  
   }
-  }
+  
 
   function shuffle(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
@@ -109,5 +111,6 @@ if(computerDeck.length > 0) {
       let newCompDeck = deck.slice(deck.length / 2); 
       computerDeck = newCompDeck
     }
+    
 
-
+   
